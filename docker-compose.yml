@@ -5,19 +5,19 @@ services:
     container_name: rabbitmq
     hostname: 'rabbitmq'
     environment:
-		 RABBITMQ_DEFAULT_USER: "admin"
-		 RABBITMQ_DEFAULT_PASS: "admin"
-		 RABBITMQ_DEFAULT_VHOST: "/"
-	ports:
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "admin"
+      RABBITMQ_DEFAULT_VHOST: "/"
+  ports:
       - "5672:5672"
       - "15672:15672"
-    volumes:
-	  - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia/
+  volumes:
+    - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia/
     - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
-	  - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
-    restart: always
-	networks:
-	  - rabbitmq_net
+    - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+  restart: always
+  networks:
+    - rabbitmq_net
 networks:
   rabbitmq_net:
     driver: bridge
